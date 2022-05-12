@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# ZSH
+git clone --depth 1 -- https://github.com/marlonrichert/zsh-autocomplete.git $ZSH/plugins/zsh-autocomplete
+
 # Download vim plug
 if [ ! -f "$HOME/.vim/autoload/plug.vim" ]; then
 	curl -sfLo ~/.vim/autoload/plug.vim --create-dirs \
