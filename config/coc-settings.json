@@ -13,7 +13,7 @@
       }
     }
   },
-  "solargraph.commandPath": "/Users/francissunday/.rbenv/shims/solargraph",
+  "solargraph.commandPath": "/Users/codehakase/.rbenv/shims/solargraph",
   "solargraph.formatting": true
 
 }

@@ -182,10 +182,10 @@ nmap ++ <plug>NERDCommenterToggle
 nmap sc :source ~/.config/nvim/init.vim <cr>
 
 " Disable arrow keys => yeah let's get bad ass with vim :D
-nnoremap <Up> :echomsg "use k idiot!!!"<cr>
-nnoremap <Down> :echomsg "use j idiot!!!"<cr>
-nnoremap <Left> :echomsg "use h idiot!!!"<cr>
-nnoremap <Right> :echomsg "use l idiot!!!"<cr>
+nnoremap <Up> :echomsg "use k instead!!!"<cr>
+nnoremap <Down> :echomsg "use j instead!!!"<cr>
+nnoremap <Left> :echomsg "use h instead!!!"<cr>
+nnoremap <Right> :echomsg "use l instead!!!"<cr>
 nnoremap <C-p> :Files<CR>
 
 " Remap common key patterns to Mac OSX
@@ -203,6 +203,9 @@ au Filetype go nmap <leader>gav <Plug>(go-alternate-vertical)
 au FileType go nmap <F10> :GoTest -short<cr>
 au FileType go nmap <F9> :GoCoverageToggle -short<cr>
 au FileType go nmap <F12> <Plug>(go-def)
+au FileType go nmap ds <Plug>(go-def-split)
+au FileType go nmap dv <Plug>(go-def-vertical)
+au FileType go nmap dt <Plug>(go-def-tab)
 
 
 " =========== Helper functions ===============
@@ -236,6 +239,7 @@ au FileType go set noexpandtab
 au FileType go set shiftwidth=4
 au FileType go set softtabstop=4
 au FileType go set tabstop=4
+au FileType go nmap gd <Plug>(go-def-tab)
 
 let g:prettier#config#bracket_spacing = 'true'
 let g:prettier#config#jsx_bracket_same_line = 'false'
