@@ -8,4 +8,4 @@ cd $HOME/dotfiles
 
 git add .
 git commit -m "Auto Syncing dotfiles.... $now"
-git push
+git push origin HEAD
