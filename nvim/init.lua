@@ -84,7 +84,8 @@ local plugins = {
     'mrcjkb/haskell-tools.nvim',
     version = '^4',
     lazy = false, 
-  }
+  },
+  {"github/copilot.vim"}
 }
 local opts = {}
 

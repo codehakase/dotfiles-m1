@@ -1,7 +1,10 @@
 set -gx PATH "$HOME/.ghcup/bin" $PATH
 set -x SSH_AUTH_SOCK /Users/ops/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/socket.ssh
 
+source ~/.bashrc
+
 export GPG_TTY=$(tty)
+export MANPAGER='nvim +Man!'
 
 alias ngrok="~/ngrok"
 alias v=/opt/homebrew/bin/nvim
@@ -28,6 +31,7 @@ alias tconf="v $HOME/.config/tmux/tmux.conf"
 alias vc="v $HOME/.config/nvim/init.lua"
 alias rb="~/.rbenv/shims/ruby"
 alias rs="~/.rbenv/shims/rails"
+alias up="gp origin HEAD"
 if status is-interactive
     # Commands to run in interactive sessions can go here
 end
