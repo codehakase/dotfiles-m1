@@ -16,8 +16,9 @@ alias gd="git diff"
 alias gaa="git add ."
 alias gc="git commit -S -m "
 alias gp="git push"
-alias gpo="git push orign "
-alias glods='git log --pretty=format:"%h%x09%an%x09%ad%x09%s"'
+alias gpo="git push origin "
+alias gco="git checkout "
+alias glods='git log --oneline --graph --decorate --all'
 alias tm="tmux -u -2 -f ~/.config/tmux/tmux.conf new -s"
 alias ta="tmux attach -d -t"
 alias td="tmux detach"
@@ -32,6 +33,7 @@ alias vc="v $HOME/.config/nvim/init.lua"
 alias rb="~/.rbenv/shims/ruby"
 alias rs="~/.rbenv/shims/rails"
 alias up="gp origin HEAD"
+alias upf="gp -f origin HEAD"
 if status is-interactive
     # Commands to run in interactive sessions can go here
 end

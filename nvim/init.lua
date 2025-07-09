@@ -14,7 +14,7 @@ vim.cmd("set tabstop=2")
 vim.cmd("set shiftwidth=2")
 vim.cmd("set softtabstop=2")
 vim.cmd("set expandtab")
-vim.o.background="dark"
+vim.o.background = "dark"
 vim.opt.inccommand = 'split'
 
 -- sync clipboard with os
@@ -42,7 +42,17 @@ vim.opt.rtp:prepend(lazypath)
 
 -- Plugins
 local plugins = {
-  { "ellisonleao/gruvbox.nvim", priority = 1000 , config = true, opts = ...},
+  {
+    "ellisonleao/gruvbox.nvim", 
+    priority = 1000 , 
+    config = function ()
+        require("gruvbox").setup({
+          contrast = "hard"
+        })
+      vim.cmd([[colorscheme gruvbox]])
+    end,
+    opts = ...
+  },
   {
     'nvim-telescope/telescope.nvim', tag = '0.1.8',
     dependencies = { 'nvim-lua/plenary.nvim' }
@@ -85,13 +95,12 @@ local plugins = {
     version = '^4',
     lazy = false, 
   },
-  {"github/copilot.vim"}
+  {"github/copilot.vim"},
 }
 local opts = {}
 
 require("lazy").setup(plugins, opts)
 
-vim.cmd([[colorscheme gruvbox]])
 
 -- Telescope
 require("telescope").setup({
