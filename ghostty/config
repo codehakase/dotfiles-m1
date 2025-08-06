@@ -3,4 +3,3 @@ mouse-hide-while-typing = true
 macos-titlebar-style = transparent
 cursor-style = block
 font-size = 13
-macos-option-as-alt = true
