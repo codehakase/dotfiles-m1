@@ -18,7 +18,7 @@ alias gc="git commit -S -m "
 alias gp="git push"
 alias gpo="git push origin "
 alias gco="git checkout "
-alias glods='git log --oneline --graph --decorate --all'
+alias glods='git log --oneline --graph --decorate'
 alias tm="tmux -u -2 -f ~/.config/tmux/tmux.conf new -s"
 alias ta="tmux attach -d -t"
 alias td="tmux detach"
@@ -37,3 +37,7 @@ alias upf="gp -f origin HEAD"
 if status is-interactive
     # Commands to run in interactive sessions can go here
 end
+
+# bun
+set --export BUN_INSTALL "$HOME/.bun"
+set --export PATH $BUN_INSTALL/bin $PATH
