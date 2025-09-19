@@ -276,6 +276,7 @@ local plugins = {
     end,
   },
   "mbbill/undotree",
+  "tpope/vim-fugitive",
 }
 local opts = {}
 
@@ -288,7 +289,7 @@ require("lazy").setup(plugins, opts)
 -- after the language server attaches to the current buffer
 local on_attach = function(client, bufnr)
   -- Enable completion triggered by <c-x><c-o>
-  vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
+  vim.bo[bufnr].omnifunc = 'v:lua.vim.lsp.omnifunc'
 
   -- Mappings.
   -- See `:help vim.lsp.*` for documentation on any of the below functions
@@ -318,7 +319,7 @@ end
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
 
-require('lspconfig')['gopls'].setup {
+vim.lsp.config.gopls = {
   capabilities = capabilities,
   on_attach = on_attach,
   settings = {
@@ -332,7 +333,7 @@ require('lspconfig')['gopls'].setup {
   },
 }
 
-require('lspconfig')['tailwindcss'].setup{
+vim.lsp.config.tailwindcss = {
   capabilities = capabilities,
   on_attach = on_attach,
 }
