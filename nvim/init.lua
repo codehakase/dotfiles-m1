@@ -51,9 +51,9 @@ local plugins = {
     "ellisonleao/gruvbox.nvim", 
     priority = 1000 , 
     config = function ()
-        require("gruvbox").setup({
-          contrast = "hard"
-        })
+      require("gruvbox").setup({
+        contrast = "hard"
+      })
       vim.cmd([[colorscheme gruvbox]])
     end,
   },
@@ -120,7 +120,7 @@ local plugins = {
     },
     config = function()
       local cmp = require('cmp')
-      
+
       cmp.setup({
         snippet = {
           expand = function(args)
@@ -142,10 +142,10 @@ local plugins = {
           { name = 'nvim_lsp' },
           { name = 'vsnip' },
         }, {
-          { name = 'buffer' },
-        })
+            { name = 'buffer' },
+          })
       })
-      
+
       -- cmdline setup
       cmp.setup.cmdline({ '/', '?' }, {
         mapping = cmp.mapping.preset.cmdline(),
@@ -153,14 +153,14 @@ local plugins = {
           { name = 'buffer' }
         }
       })
-      
+
       cmp.setup.cmdline(':', {
         mapping = cmp.mapping.preset.cmdline(),
         sources = cmp.config.sources({
           { name = 'path' }
         }, {
-          { name = 'cmdline' }
-        }),
+            { name = 'cmdline' }
+          }),
         matching = { disallow_symbol_nonprefix_matching = false }
       })
     end,
@@ -249,7 +249,7 @@ local plugins = {
   {
     'mrcjkb/haskell-tools.nvim',
     version = '^4',
-    lazy = false, 
+    lazy = false,
   },
   {"github/copilot.vim", event = "InsertEnter"},
   {
@@ -265,7 +265,7 @@ local plugins = {
           },
         },
       })
-      
+
       -- Keymaps
       vim.keymap.set("n", "<leader>xx", "<cmd>Trouble diagnostics toggle<cr>", { desc = "Diagnostics (Trouble)" })
       vim.keymap.set("n", "<leader>xX", "<cmd>Trouble diagnostics toggle filter.buf=0<cr>", { desc = "Buffer Diagnostics (Trouble)" })
@@ -277,6 +277,21 @@ local plugins = {
   },
   "mbbill/undotree",
   "tpope/vim-fugitive",
+  {
+    "williamboman/mason.nvim",
+    config = function()
+      require("mason").setup()
+    end,
+  },
+  {
+    "williamboman/mason-lspconfig.nvim",
+    dependencies = { "mason.nvim" },
+    config = function()
+      require("mason-lspconfig").setup({
+        ensure_installed = { "ts_ls", "cssls", "html", "eslint", "emmet_ls" }
+      })
+    end,
+  },
 }
 local opts = {}
 
@@ -284,6 +299,13 @@ require("lazy").setup(plugins, opts)
 
 
 
+
+-- Configure hover window with padding
+vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
+  border = "rounded",
+  max_width = 80,
+  max_height = 20,
+})
 
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
@@ -338,6 +360,53 @@ vim.lsp.config.tailwindcss = {
   on_attach = on_attach,
 }
 
+vim.lsp.config.ts_ls = {
+  capabilities = capabilities,
+  on_attach = on_attach,
+  settings = {
+    typescript = {
+      inlayHints = {
+        includeInlayParameterNameHints = 'all',
+        includeInlayPropertyDeclarationTypeHints = true,
+        includeInlayFunctionParameterTypeHints = true,
+        includeInlayVariableTypeHints = true,
+      },
+    },
+    javascript = {
+      inlayHints = {
+        includeInlayParameterNameHints = 'all',
+        includeInlayPropertyDeclarationTypeHints = true,
+        includeInlayFunctionParameterTypeHints = true,
+        includeInlayVariableTypeHints = true,
+      },
+    },
+  },
+}
+
+vim.lsp.config.cssls = {
+  capabilities = capabilities,
+  on_attach = on_attach,
+}
+
+vim.lsp.config.html = {
+  capabilities = capabilities,
+  on_attach = on_attach,
+}
+
+vim.lsp.config.eslint = {
+  capabilities = capabilities,
+  on_attach = on_attach,
+  settings = {
+    workingDirectories = { mode = "auto" },
+  },
+}
+
+vim.lsp.config.emmet_ls = {
+  capabilities = capabilities,
+  on_attach = on_attach,
+  filetypes = { "html", "css", "scss", "javascript", "javascriptreact", "typescript", "typescriptreact" },
+}
+
 local autocmd = vim.api.nvim_create_autocmd
 autocmd("BufWritePre", {
   pattern = "*.go",
@@ -358,8 +427,8 @@ autocmd("BufWritePre", {
 })
 
 -- Auto-reload files when changed externally
-  vim.opt.autoread = true
-  vim.api.nvim_create_autocmd({ "BufEnter", "CursorHold", "CursorHoldI", "FocusGained" }, {
-    command = "if mode() != 'c' | checktime | endif",
-    pattern = { "*" },
-  })
+vim.opt.autoread = true
+vim.api.nvim_create_autocmd({ "BufEnter", "CursorHold", "CursorHoldI", "FocusGained" }, {
+  command = "if mode() != 'c' | checktime | endif",
+  pattern = { "*" },
+})
