@@ -1,4 +1,5 @@
-theme = GruvboxDark
+#theme = GruvboxDark
+theme = light:GruvboxLightHard,dark:GruvboxDarkHard
 mouse-hide-while-typing = true
 macos-titlebar-style = transparent
 cursor-style = block

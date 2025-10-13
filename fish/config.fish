@@ -1,4 +1,5 @@
 set -gx PATH "$HOME/.ghcup/bin" $PATH
+set -gx PATH "$HOME/.cabal/bin" $PATH
 set -x SSH_AUTH_SOCK /Users/ops/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/socket.ssh
 
 source ~/.bashrc
