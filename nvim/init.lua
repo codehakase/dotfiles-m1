@@ -10,7 +10,6 @@ vim.opt.diffopt:append("vertical")
 vim.opt.colorcolumn = "0"
 vim.opt.smarttab = true
 vim.opt.mouse = "a"
-vim.opt.background = "dark"
 vim.opt.inccommand = 'split'
 
 -- Tab settings
@@ -52,9 +51,16 @@ local plugins = {
     priority = 1000 , 
     config = function ()
       require("gruvbox").setup({
-        contrast = "hard"
+        contrast = ""
       })
       vim.cmd([[colorscheme gruvbox]])
+    end,
+  },
+  -- automatic dark mode
+  {
+    "cormacrelf/dark-notify",
+    config = function ()
+      require("dark_notify").run()
     end,
   },
   {
