@@ -99,13 +99,14 @@ local plugins = {
     config = function()
       require("nvim-treesitter.configs").setup({
         ensure_installed = { 
-          "go", 
-          "lua", 
-          "haskell", 
+          "go",
+          "lua",
+          "haskell",
           "typescript",
           "html",
           "css", 
           "javascript",
+          "rust",
         },
         highlight = { enable = true },
         indent = { enable = true },
@@ -294,9 +295,15 @@ local plugins = {
     dependencies = { "mason.nvim" },
     config = function()
       require("mason-lspconfig").setup({
-        ensure_installed = { "ts_ls", "cssls", "html", "eslint", "emmet_ls" }
+        ensure_installed = { "ts_ls", "cssls", "html", "eslint", "emmet_ls"}
       })
     end,
+  },
+  {
+    'mrcjkb/rustaceanvim',
+    version = '^5',
+    lazy = false,
+    ft = { 'rust' },
   },
 }
 local opts = {}
