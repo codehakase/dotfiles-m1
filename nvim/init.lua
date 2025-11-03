@@ -64,7 +64,7 @@ local plugins = {
     end,
   },
   {
-    'nvim-telescope/telescope.nvim', tag = '0.1.8',
+    'nvim-telescope/telescope.nvim',
     dependencies = { 'nvim-lua/plenary.nvim' },
     config = function()
       require("telescope").setup({
@@ -233,7 +233,7 @@ local plugins = {
           lualine_x = {
             {
               'diagnostics', 
-              sources = { 'nvim_diagnostic', 'nvim_lsp'},
+              sources = {'nvim_lsp'},
               symbols = { error = '', warn = '', info = '', hint = ''}
             },
             'encoding', 'filetype'
@@ -368,10 +368,15 @@ vim.lsp.config.gopls = {
   },
 }
 
+vim.lsp.enable('gopls')
+
 vim.lsp.config.tailwindcss = {
   capabilities = capabilities,
   on_attach = on_attach,
+  filetypes = {"html", "css", "javascript", "javascriptreact", "typescript", "typescriptreact"},
 }
+
+vim.lsp.enable('tailwindcss')
 
 vim.lsp.config.ts_ls = {
   capabilities = capabilities,
@@ -396,15 +401,21 @@ vim.lsp.config.ts_ls = {
   },
 }
 
+vim.lsp.enable('ts_ls')
+
 vim.lsp.config.cssls = {
   capabilities = capabilities,
   on_attach = on_attach,
 }
 
+vim.lsp.enable('cssls')
+
 vim.lsp.config.html = {
   capabilities = capabilities,
   on_attach = on_attach,
 }
+
+vim.lsp.enable('html')
 
 vim.lsp.config.eslint = {
   capabilities = capabilities,
@@ -414,17 +425,21 @@ vim.lsp.config.eslint = {
   },
 }
 
+vim.lsp.enable('eslint')
+
 vim.lsp.config.emmet_ls = {
   capabilities = capabilities,
   on_attach = on_attach,
   filetypes = { "html", "css", "scss", "javascript", "javascriptreact", "typescript", "typescriptreact" },
 }
 
+vim.lsp.enable('emmet_ls')
+
 local autocmd = vim.api.nvim_create_autocmd
 autocmd("BufWritePre", {
   pattern = "*.go",
   callback = function()
-    local params = vim.lsp.util.make_range_params()
+    local params = vim.lsp.util.make_range_params(0, "utf-16")
     params.context = {only = {"source.organizeImports"}}
     local result = vim.lsp.buf_request_sync(0, "textDocument/codeAction", params)
     for cid, res in pairs(result or {}) do
