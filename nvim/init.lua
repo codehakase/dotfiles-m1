@@ -2,6 +2,7 @@ vim.g.mapleader = ","
 vim.g.maplocalleader = "\\"
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
+vim.g.go_addtags_transform = "camelcase"
 
 -- UI settings
 vim.opt.relativenumber = true
@@ -305,6 +306,10 @@ local plugins = {
     lazy = false,
     ft = { 'rust' },
   },
+  {
+    "fatih/vim-go",
+    ft = { "go" },
+  },
 }
 local opts = {}
 
@@ -460,3 +465,5 @@ vim.api.nvim_create_autocmd({ "BufEnter", "CursorHold", "CursorHoldI", "FocusGai
   command = "if mode() != 'c' | checktime | endif",
   pattern = { "*" },
 })
+
+vim.api.nvim_create_user_command('Qo', '%bd|e#|bd#', { desc = 'Close all buffers except current' })

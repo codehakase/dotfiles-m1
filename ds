@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+
+SESSION=$(basename "$PWD")
+DIR="$PWD"
+
+if tmux has-session -t "$SESSION" 2>/dev/null; then
+  if [ -n "$TMUX" ]; then
+    tmux switch-client -t "$SESSION"
+  else
+    tmux attach-session -t "$SESSION"
+  fi
+  exit 0
+fi
+
+tmux new-session -d -s "$SESSION" -n "$SESSION" -c "$DIR"
+tmux send-keys -t "$SESSION:0" 'v' C-m
+
+tmux new-window -t "$SESSION" -n "$SESSION" -c "$DIR"
+tmux split-window -t "$SESSION:1.0" -v -l 38% -c "$DIR"
+tmux split-window -t "$SESSION:1.1" -h -l 67% -c "$DIR"
+tmux split-window -t "$SESSION:1.1" -v -l 48% -c "$DIR"
+
+tmux select-window -t "$SESSION:0"
+
+if [ -n "$TMUX" ]; then
+  tmux switch-client -t "$SESSION"
+else
+  tmux attach-session -t "$SESSION"
+fi
