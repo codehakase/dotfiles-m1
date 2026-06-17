@@ -1,0 +1,33 @@
+[general]
+import = ["~/.config/alacritty/themes/current.toml"]
+
+[env]
+TERM = "tmux-256color"
+
+[window]
+opacity = 1.0
+padding = { x = 8, y = 8 }
+dynamic_title = true
+decorations = "Buttonless"
+startup_mode = "Maximized"
+
+[cursor.style]
+shape = "Block"
+blinking = "On"
+
+[font]
+normal = { family = "JetBrainsMono Nerd Font" }
+size = 13.0
+
+[selection]
+save_to_clipboard = false
+
+[scrolling]
+history = 10000
+
+
+[terminal.shell]
+program = "/opt/homebrew/bin/fish"
+
+# Colors are imported from themes/current.toml (swapped by seki-theme-switch
+# based on macOS appearance). See [general] import at top of file.
