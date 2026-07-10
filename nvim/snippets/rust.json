@@ -1,0 +1,56 @@
+{
+  "test module": {
+    "prefix": "testmod",
+    "body": [
+      "#[cfg(test)]",
+      "mod tests {",
+      "    use super::*;",
+      "",
+      "    #[test]",
+      "    fn ${1:test_name}() {",
+      "        $0",
+      "    }",
+      "}"
+    ],
+    "description": "#[cfg(test)] module with one test"
+  },
+  "error enum with Display + Error": {
+    "prefix": "errenum",
+    "body": [
+      "#[derive(Debug)]",
+      "enum ${1:MyError} {",
+      "    $0",
+      "}",
+      "",
+      "impl std::fmt::Display for ${1:MyError} {",
+      "    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {",
+      "        write!(f, \"{:?}\", self)",
+      "    }",
+      "}",
+      "",
+      "impl std::error::Error for ${1:MyError} {}"
+    ],
+    "description": "manual std::error::Error impl (no thiserror dependency)"
+  },
+  "shared state (Arc<Mutex<T>>)": {
+    "prefix": "arcmutex",
+    "body": [
+      "let ${1:shared} = std::sync::Arc::new(std::sync::Mutex::new(${2:value}));",
+      "let ${1:shared}_clone = std::sync::Arc::clone(&${1:shared});",
+      "$0"
+    ],
+    "description": "Arc<Mutex<T>> plus a clone for moving into another thread/task"
+  },
+  "tokio async main": {
+    "prefix": "tokiomain",
+    "body": [
+      "#[tokio::main]",
+      "async fn main() -> Result<(), Box<dyn std::error::Error>> {",
+      "    $0",
+      "",
+      "    Ok(())",
+      "}"
+    ],
+    "description": "tokio async main returning a boxed error"
+  }
+}

@@ -6,6 +6,7 @@ set -gx PATH \
     "$HOME/.cabal/bin" \
     "$HOME/.bun/bin" \
     "$HOME/go/bin" \
+    "/usr/local/go/bin" \
     "$HOME/.agents/commands" \
     "$HOME/.local/bin" \
     $PATH
@@ -64,6 +65,7 @@ if status is-interactive
 
     # misc
     alias ralph-init="cp $HOME/Dev/personal/experiments/docs/{ralph-loop.sh,progress.txt} ."
+    alias cw="CLAUDE_CONFIG_DIR=$HOME/Dev/talstackstaff/.claude-ts claude"
 end
 
 # Functions

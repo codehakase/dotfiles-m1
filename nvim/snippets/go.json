@@ -1,0 +1,95 @@
+{
+  "if err != nil": {
+    "prefix": "iferr",
+    "body": [
+      "if err != nil {",
+      "\treturn ${1:err}",
+      "}",
+      "$0"
+    ],
+    "description": "if err != nil { return err }"
+  },
+  "for range": {
+    "prefix": "forr",
+    "body": [
+      "for ${1:k}, ${2:v} := range ${3:collection} {",
+      "\t$0",
+      "}"
+    ],
+    "description": "for range loop"
+  },
+  "table-driven test": {
+    "prefix": "tabletest",
+    "body": [
+      "func Test${1:Name}(t *testing.T) {",
+      "\ttests := []struct {",
+      "\t\tname string",
+      "\t\t${2:input} ${3:string}",
+      "\t\twant  ${4:string}",
+      "\t}{",
+      "\t\t{name: \"${5:case}\", ${2:input}: ${6:\"\"}, want: ${7:\"\"}},",
+      "\t}",
+      "",
+      "\tfor _, tt := range tests {",
+      "\t\tt.Run(tt.name, func(t *testing.T) {",
+      "\t\t\tgot := ${8:FuncUnderTest}(tt.${2:input})",
+      "\t\t\tif got != tt.want {",
+      "\t\t\t\tt.Errorf(\"got %v, want %v\", got, tt.want)",
+      "\t\t\t}",
+      "\t\t})",
+      "\t}",
+      "}"
+    ],
+    "description": "table-driven test with subtests"
+  },
+  "waitgroup goroutine": {
+    "prefix": "wg",
+    "body": [
+      "var wg sync.WaitGroup",
+      "wg.Add(1)",
+      "go func() {",
+      "\tdefer wg.Done()",
+      "\t$0",
+      "}()",
+      "wg.Wait()"
+    ],
+    "description": "sync.WaitGroup goroutine boilerplate"
+  },
+  "compile-time interface assertion": {
+    "prefix": "assert",
+    "body": [
+      "var _ ${1:Interface} = (*${2:Type})(nil)"
+    ],
+    "description": "compile-time check that Type implements Interface"
+  },
+  "wrapped error type": {
+    "prefix": "errtype",
+    "body": [
+      "type ${1:Name}Error struct {",
+      "\t${2:Op}  string",
+      "\tErr error",
+      "}",
+      "",
+      "func (e *${1:Name}Error) Error() string {",
+      "\treturn fmt.Sprintf(\"%s: %v\", e.${2:Op}, e.Err)",
+      "}",
+      "",
+      "func (e *${1:Name}Error) Unwrap() error {",
+      "\treturn e.Err",
+      "}"
+    ],
+    "description": "custom error type with Unwrap for errors.Is/As"
+  },
+  "graceful shutdown context": {
+    "prefix": "sigctx",
+    "body": [
+      "ctx, stop := signal.NotifyContext(context.Background(), os.Interrupt, syscall.SIGTERM)",
+      "defer stop()",
+      "",
+      "$0",
+      "",
+      "<-ctx.Done()"
+    ],
+    "description": "context cancelled on SIGINT/SIGTERM"
+  }
+}

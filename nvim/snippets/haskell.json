@@ -1,0 +1,38 @@
+{
+  "hspec spec": {
+    "prefix": "spec",
+    "body": [
+      "spec :: Spec",
+      "spec = describe \"${1:ModuleName}\" $ do",
+      "  it \"${2:should do something}\" $ do",
+      "    $0"
+    ],
+    "description": "hspec describe/it boilerplate"
+  },
+  "QuickCheck property": {
+    "prefix": "prop",
+    "body": [
+      "prop_${1:name} :: ${2:Int} -> Bool",
+      "prop_${1:name} ${3:x} = $0"
+    ],
+    "description": "QuickCheck property test"
+  },
+  "newtype with accessor": {
+    "prefix": "newtype",
+    "body": [
+      "newtype ${1:Name} = ${1:Name} { un${1:Name} :: ${2:Type} }",
+      "  deriving (Show, Eq, Ord)"
+    ],
+    "description": "newtype wrapper with unwrap accessor and common deriving"
+  },
+  "record data type": {
+    "prefix": "record",
+    "body": [
+      "data ${1:TypeName} = ${1:TypeName}",
+      "  { ${2:field1} :: ${3:Type1}",
+      "  , ${4:field2} :: ${5:Type2}",
+      "  } deriving (Show, Eq)"
+    ],
+    "description": "record-syntax data type with leading-comma field style"
+  }
+}

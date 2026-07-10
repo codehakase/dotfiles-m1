@@ -1,7 +1,7 @@
 # Gruvbox light
 
 [colors.primary]
-background = '#ffffd4'
+background = '#fbf0c2'
 foreground = '#3c3836'
 
 [colors.normal]

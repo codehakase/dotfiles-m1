@@ -1,0 +1,23 @@
+{
+  "autocmd": {
+    "prefix": "autocmd",
+    "body": [
+      "vim.api.nvim_create_autocmd(\"${1:BufWritePre}\", {",
+      "  pattern = \"${2:*}\",",
+      "  callback = function()",
+      "    $0",
+      "  end,",
+      "})"
+    ],
+    "description": "nvim_create_autocmd boilerplate"
+  },
+  "keymap": {
+    "prefix": "keymap",
+    "body": [
+      "vim.keymap.set(\"${1:n}\", \"${2:<leader>x}\", function()",
+      "  $0",
+      "end, { desc = \"${3:description}\" })"
+    ],
+    "description": "vim.keymap.set boilerplate"
+  }
+}
