@@ -20,3 +20,5 @@ mkdir -p "$HOME/Library/LaunchAgents"
 ln -sf "$PWD/alacritty/com.talstackstaff.alacritty-theme.plist" \
   "$HOME/Library/LaunchAgents/com.talstackstaff.alacritty-theme.plist"
 launchctl load "$HOME/Library/LaunchAgents/com.talstackstaff.alacritty-theme.plist"
+
+# NOTE: neovim V0.12.4+ requires: brew install tree-sitter-cli
