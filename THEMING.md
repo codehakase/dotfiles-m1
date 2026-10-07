@@ -66,10 +66,13 @@ plugins is enough:
 ### Alacritty
 - `alacritty/alacritty.toml` imports `themes/current.toml` via
   `[general] import`.
-- `themes/current.toml` is a **machine-generated copy** of either
-  `gruvbox-dark.toml` or `gruvbox-light.toml`. It is gitignored.
+- `themes/current.toml` is a machine-generated copy of the active theme.
+- Three dark variants are available: `gruvbox`, `gruvbox-hard`, and
+  `monochrome`. The selection is stored outside the repository at
+  `~/.local/state/dotfiles/theme`.
 - `theme-switch.sh` reads `defaults read -g AppleInterfaceStyle` and copies the
-  right palette over `current.toml`. Alacritty live-reloads (no restart).
+  selected dark palette or Gruvbox Light over `current.toml`. Alacritty
+  live-reloads (no restart).
 - The LaunchAgent runs `theme-switch.sh watch`, which execs
   `dark-notify -c theme-switch.sh` so the swap happens on every appearance
   change and at login.
@@ -80,8 +83,34 @@ plugins is enough:
   through to Alacritty (`window-style` is left at `default`).
 
 ### Neovim
-- The `dark-notify` Lua plugin sets `vim.o.background` and the colorscheme to
-  match, live, while nvim is running.
+- `:Theme gruvbox`, `:Theme gruvbox-hard`, and `:Theme monochrome` switch both
+  the current Neovim instance and Alacritty, then persist the selection.
+- `:Theme` with no argument shows the selected dark variant.
+- The `dark-notify` Lua plugin uses Gruvbox Light in light appearance and
+  restores the selected variant in dark appearance.
+
+### Manual theme selection
+
+From Fish, switch Alacritty and persist the theme for new Neovim instances:
+
+```sh
+theme gruvbox
+theme gruvbox-hard
+theme monochrome
+theme current
+theme list
+```
+
+From Neovim, use `:Theme <name>` to update both Neovim and Alacritty live.
+The variants are:
+
+- `gruvbox`: original Gruvbox Dark (`#282828` canvas, normal contrast)
+- `gruvbox-hard`: Gruvbox Dark Hard with the true-black canvas
+- `monochrome`: true black and grayscale with muted earth-tone syntax accents
+
+Explicit selection previews a dark variant immediately. Automatic macOS light
+appearance still uses Gruvbox Light; returning to dark restores the saved
+variant.
 
 ## Verifying / troubleshooting
 

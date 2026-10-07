@@ -41,7 +41,8 @@ if status is-interactive
     alias glods='git log --oneline --graph --decorate'
     alias nah="git reset --soft HEAD~1"
     alias up="gp origin HEAD"
-    alias upf="gp -f origin HEAD"
+    alias upf="gp --force-with-lease origin HEAD"
+    alias upff="gp -f origin HEAD"
 
     # General
     alias ngrok="$HOME/ngrok"
@@ -71,6 +72,10 @@ end
 # Functions
 function tm
     tmux -u -2 -f ~/.config/tmux/tmux.conf new -s $argv
+end
+
+function theme
+    ~/.config/alacritty/theme-switch.sh $argv
 end
 
 # Added by OrbStack: command-line tools and integration

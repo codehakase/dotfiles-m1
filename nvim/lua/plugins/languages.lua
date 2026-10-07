@@ -10,6 +10,32 @@ return {
 		"mrcjkb/haskell-tools.nvim",
 		version = "^9",
 		lazy = false,
+		init = function()
+			vim.g.haskell_tools = {
+				tools = {
+					codeLens = {
+						autoRefresh = false,
+					},
+				},
+				hls = {
+					settings = {
+						haskell = {
+							checkProject = false,
+							checkParents = "NeverCheck",
+							plugin = {
+								importLens = {
+									codeLensOn = false,
+									inlayHintsOn = false,
+								},
+								moduleName = {
+									globalOn = false,
+								},
+							},
+						},
+					},
+				},
+			}
+		end,
 	},
 	-- Go extras (:GoTest, struct tags, etc.). gopls owns `gd`, so disable vim-go's mapping.
 	{

@@ -1,0 +1,217 @@
+vim.cmd.highlight("clear")
+vim.g.colors_name = "monochrome"
+vim.o.background = "dark"
+vim.o.termguicolors = true
+
+local colors = {
+  black = "#000000",
+  bg1 = "#151515",
+  bg2 = "#181818",
+  bg3 = "#202020",
+  bg4 = "#303030",
+  grey = "#505050",
+  grey_fg = "#707070",
+  grey_fg2 = "#8a8a8a",
+  blue = "#9a9a9a",
+  green = "#a0a0a0",
+  orange = "#aaaaaa",
+  purple = "#ababab",
+  light_grey = "#b8b8b8",
+  pink = "#c0c0c0",
+  yellow = "#c6c6c6",
+  selection = "#c8c8c8",
+  white = "#d8d8d8",
+  bright = "#e0e0e0",
+  brightest = "#f0f0f0",
+  string = "#415237",
+  string_escape = "#516346",
+  func = "#635a46",
+  keyword = "#99883f",
+  directive = "#8f6a5a",
+}
+
+local groups = {
+  Normal = { fg = colors.white, bg = colors.black },
+  NormalNC = { fg = colors.light_grey, bg = colors.black },
+  NormalFloat = { fg = colors.white, bg = colors.bg3 },
+  FloatBorder = { fg = colors.grey_fg, bg = colors.bg3 },
+  FloatTitle = { fg = colors.white, bg = colors.bg3, bold = true },
+  CursorLine = { bg = colors.bg2 },
+  CursorColumn = { bg = colors.bg2 },
+  ColorColumn = { bg = colors.bg2 },
+  LineNr = { fg = colors.grey, bg = colors.black },
+  CursorLineNr = { fg = colors.white, bg = colors.bg2, bold = true },
+  SignColumn = { fg = colors.grey, bg = colors.black },
+  FoldColumn = { fg = colors.grey_fg, bg = colors.black },
+  Folded = { fg = colors.grey_fg2, bg = colors.bg2 },
+  WinSeparator = { fg = colors.bg4, bg = colors.black },
+  NonText = { fg = colors.bg4 },
+  EndOfBuffer = { fg = colors.black, bg = colors.black },
+  Whitespace = { fg = colors.bg4 },
+  SpecialKey = { fg = colors.grey },
+  Visual = { fg = colors.black, bg = colors.selection },
+  Search = { fg = colors.black, bg = colors.light_grey },
+  IncSearch = { fg = colors.black, bg = colors.bright, bold = true },
+  CurSearch = { fg = colors.black, bg = colors.bright, bold = true },
+  MatchParen = { fg = colors.black, bg = colors.light_grey, bold = true },
+  Pmenu = { fg = colors.white, bg = colors.bg3 },
+  PmenuSel = { fg = colors.black, bg = colors.selection, bold = true },
+  PmenuSbar = { bg = colors.bg4 },
+  PmenuThumb = { bg = colors.grey_fg },
+  StatusLine = { fg = colors.white, bg = colors.bg3 },
+  StatusLineNC = { fg = colors.grey_fg, bg = colors.bg2 },
+  TabLine = { fg = colors.grey_fg, bg = colors.bg1 },
+  TabLineFill = { bg = colors.bg1 },
+  TabLineSel = { fg = colors.white, bg = colors.bg4, bold = true },
+  Directory = { fg = colors.light_grey },
+  Title = { fg = colors.white, bold = true },
+
+  Comment = { fg = colors.grey_fg, italic = true },
+  String = { fg = colors.string },
+  Character = { fg = colors.string_escape },
+  Number = { fg = colors.orange },
+  Float = { fg = colors.orange },
+  Boolean = { fg = colors.yellow, bold = true },
+  Function = { fg = colors.white, bold = true },
+  Keyword = { fg = colors.keyword, bold = true },
+  Statement = { fg = colors.yellow, bold = true },
+  Conditional = { fg = colors.keyword, bold = true },
+  Repeat = { fg = colors.keyword, bold = true },
+  Label = { fg = colors.yellow },
+  Exception = { fg = colors.keyword, bold = true },
+  PreProc = { fg = colors.directive },
+  Include = { fg = colors.directive, bold = true },
+  Define = { fg = colors.func, bold = true },
+  Macro = { fg = colors.func, bold = true },
+  Type = { fg = colors.light_grey },
+  StorageClass = { fg = colors.light_grey, bold = true },
+  Structure = { fg = colors.light_grey },
+  Typedef = { fg = colors.light_grey },
+  Constant = { fg = colors.light_grey },
+  Identifier = { fg = colors.white },
+  Operator = { fg = colors.light_grey },
+  Delimiter = { fg = colors.grey_fg2 },
+  Special = { fg = colors.white },
+  Underlined = { fg = colors.white, underline = true },
+  Todo = { fg = colors.black, bg = colors.white, bold = true },
+  Error = { fg = colors.black, bg = colors.selection, bold = true },
+  ErrorMsg = { fg = colors.pink, bold = true },
+  WarningMsg = { fg = colors.yellow, bold = true },
+  MoreMsg = { fg = colors.light_grey },
+  Question = { fg = colors.bright },
+
+  DiffAdd = { fg = colors.bright, bg = colors.bg2 },
+  DiffChange = { fg = colors.light_grey, bg = colors.bg3 },
+  DiffDelete = { fg = colors.grey_fg, bg = colors.bg2 },
+  DiffText = { fg = colors.black, bg = colors.light_grey, bold = true },
+  DiagnosticError = { fg = colors.pink },
+  DiagnosticWarn = { fg = colors.yellow },
+  DiagnosticInfo = { fg = colors.light_grey },
+  DiagnosticHint = { fg = colors.grey_fg2 },
+  DiagnosticUnderlineError = { sp = colors.pink, undercurl = true },
+  DiagnosticUnderlineWarn = { sp = colors.yellow, undercurl = true },
+  DiagnosticUnderlineInfo = { sp = colors.light_grey, undercurl = true },
+  DiagnosticUnderlineHint = { sp = colors.grey_fg2, undercurl = true },
+
+  ["@comment"] = { fg = colors.grey_fg, italic = true },
+  ["@string"] = { fg = colors.string },
+  ["@string.escape"] = { fg = colors.string_escape },
+  ["@number"] = { fg = colors.orange },
+  ["@number.float"] = { fg = colors.orange },
+  ["@boolean"] = { fg = colors.yellow, bold = true },
+  ["@function"] = { fg = colors.func, bold = true },
+  ["@function.call"] = { fg = colors.func },
+  ["@function.builtin"] = { fg = colors.func },
+  ["@function.method"] = { fg = colors.func },
+  ["@function.method.call"] = { fg = colors.func },
+  ["@keyword"] = { fg = colors.keyword, bold = true },
+  ["@keyword.function"] = { fg = colors.keyword, bold = true },
+  ["@keyword.return"] = { fg = colors.keyword, bold = true },
+  ["@keyword.operator"] = { fg = colors.keyword, bold = true },
+  ["@operator"] = { fg = colors.light_grey },
+  ["@type"] = { fg = colors.light_grey },
+  ["@type.builtin"] = { fg = colors.light_grey, bold = true },
+  ["@variable"] = { fg = colors.white },
+  ["@variable.parameter"] = { fg = colors.light_grey },
+  ["@variable.builtin"] = { fg = colors.yellow },
+  ["@constant"] = { fg = colors.light_grey },
+  ["@constant.builtin"] = { fg = colors.white, bold = true },
+  ["@property"] = { fg = colors.light_grey },
+  ["@field"] = { fg = colors.light_grey },
+  ["@punctuation.delimiter"] = { fg = colors.grey_fg2 },
+  ["@punctuation.bracket"] = { fg = colors.light_grey },
+  ["@markup.heading"] = { fg = colors.white, bold = true },
+  ["@markup.link"] = { fg = colors.white, underline = true },
+  ["@markup.link.url"] = { fg = colors.white, underline = true },
+  ["@constant.macro"] = { fg = colors.func, bold = true },
+  ["@function.macro"] = { fg = colors.func, bold = true },
+  ["@keyword.directive"] = { fg = colors.directive, bold = true },
+  ["@keyword.directive.define"] = { fg = colors.func, bold = true },
+
+  NeoTreeNormal = { fg = colors.white, bg = colors.black },
+  NeoTreeNormalNC = { fg = colors.light_grey, bg = colors.black },
+  NeoTreeDirectoryName = { fg = colors.light_grey },
+  NeoTreeDirectoryIcon = { fg = colors.light_grey },
+  NeoTreeRootName = { fg = colors.white, bold = true },
+  NeoTreeGitModified = { fg = colors.orange },
+  NeoTreeGitAdded = { fg = colors.white },
+  NeoTreeGitDeleted = { fg = colors.grey_fg2 },
+  OilDir = { fg = colors.light_grey, bold = true },
+  OilDirIcon = { fg = colors.light_grey },
+  OilLink = { fg = colors.grey_fg2, underline = true },
+  OilFile = { fg = colors.white },
+  OilCreate = { fg = colors.white, bold = true },
+  OilDelete = { fg = colors.grey_fg2, strikethrough = true },
+  OilMove = { fg = colors.orange },
+  OilCopy = { fg = colors.orange },
+  OilChange = { fg = colors.orange },
+  TelescopeNormal = { fg = colors.white, bg = colors.bg3 },
+  TelescopeBorder = { fg = colors.grey_fg, bg = colors.bg3 },
+  TelescopePromptNormal = { fg = colors.white, bg = colors.bg2 },
+  TelescopePromptBorder = { fg = colors.grey_fg, bg = colors.bg2 },
+  TelescopeSelection = { fg = colors.black, bg = colors.selection, bold = true },
+  TelescopeMatching = { fg = colors.brightest, bold = true },
+  GitSignsAdd = { fg = colors.white },
+  GitSignsChange = { fg = colors.orange },
+  GitSignsDelete = { fg = colors.grey_fg2 },
+}
+
+for group, definition in pairs(groups) do
+  vim.api.nvim_set_hl(0, group, definition)
+end
+
+local links = {
+  ["@lsp.type.class"] = "@type",
+  ["@lsp.type.enum"] = "@type",
+  ["@lsp.type.function"] = "@function",
+  ["@lsp.type.interface"] = "@type",
+  ["@lsp.type.macro"] = "@function.macro",
+  ["@lsp.type.method"] = "@function.method",
+  ["@lsp.type.namespace"] = "@type",
+  ["@lsp.type.parameter"] = "@variable.parameter",
+  ["@lsp.type.property"] = "@property",
+  ["@lsp.type.struct"] = "@type",
+  ["@lsp.type.type"] = "@type",
+  ["@lsp.type.variable"] = "@variable",
+}
+
+for group, target in pairs(links) do
+  vim.api.nvim_set_hl(0, group, { link = target })
+end
+
+vim.g.terminal_color_0 = colors.black
+vim.g.terminal_color_1 = colors.grey_fg2
+vim.g.terminal_color_2 = colors.green
+vim.g.terminal_color_3 = colors.yellow
+vim.g.terminal_color_4 = colors.blue
+vim.g.terminal_color_5 = colors.purple
+vim.g.terminal_color_6 = colors.light_grey
+vim.g.terminal_color_7 = colors.white
+vim.g.terminal_color_8 = colors.bg4
+vim.g.terminal_color_9 = colors.pink
+vim.g.terminal_color_10 = colors.white
+vim.g.terminal_color_11 = colors.yellow
+vim.g.terminal_color_12 = colors.blue
+vim.g.terminal_color_13 = colors.purple
+vim.g.terminal_color_14 = colors.light_grey
+vim.g.terminal_color_15 = colors.brightest

@@ -80,6 +80,46 @@
     ],
     "description": "custom error type with Unwrap for errors.Is/As"
   },
+  "method (pointer receiver)": {
+    "prefix": "meth",
+    "body": [
+      "func (${1:r} *${2:Type}) ${3:Name}(${4:args}) ${5:error} {",
+      "\t$0",
+      "}"
+    ],
+    "description": "method with pointer receiver"
+  },
+  "method (value receiver)": {
+    "prefix": "methv",
+    "body": [
+      "func (${1:v} ${2:Type}) ${3:Name}(${4:args}) ${5:error} {",
+      "\t$0",
+      "}"
+    ],
+    "description": "method with value receiver"
+  },
+  "method (context aware)": {
+    "prefix": "methctx",
+    "body": [
+      "func (${1:s} *${2:Type}) ${3:Name}(ctx context.Context, ${4:args}) (${5:Res}, ${6:error}) {",
+      "\t$0",
+      "}",
+      "",
+      "return ${7:Res}${8:, err}"
+    ],
+    "description": "context-aware method returning a value and error"
+  },
+  "constructor": {
+    "prefix": "ctor",
+    "body": [
+      "func New${1:Type}(${2:args}) *${1:Type} {",
+      "\treturn &${1:Type}{",
+      "\t\t${3:Field}: ${4:value},",
+      "\t}",
+      "}"
+    ],
+    "description": "constructor returning a pointer"
+  },
   "graceful shutdown context": {
     "prefix": "sigctx",
     "body": [

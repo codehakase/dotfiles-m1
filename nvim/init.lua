@@ -2,7 +2,7 @@
 vim.g.mapleader = ","
 vim.g.maplocalleader = "\\"
 
--- Disable netrw (neo-tree handles file browsing)
+-- Disable netrw (oil.nvim handles file browsing)
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 

@@ -15,7 +15,11 @@ return {
       pattern = languages,
       callback = function()
         vim.treesitter.start()
-        vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+
+        local language = vim.treesitter.language.get_lang(vim.bo.filetype) or vim.bo.filetype
+        if vim.treesitter.query.get(language, "indents") then
+          vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+        end
       end,
     })
   end,
