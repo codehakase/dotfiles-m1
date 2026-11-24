@@ -103,6 +103,29 @@ return {
 	{
 		"nvim-lualine/lualine.nvim",
 		config = function()
+			local filename = {
+				"filename",
+				file_status = true,
+				path = 1,
+				-- Show oil buffers as ~/path instead of oil:///full/path.
+				fmt = function(str)
+					if vim.bo.filetype ~= "oil" then
+						return str
+					end
+					local dir = require("oil").get_current_dir()
+					if not dir then
+						return str
+					end
+					-- Rebuild rather than substitute: lualine may have shortened the path already.
+					local name = vim.fn.fnamemodify(dir, ":~")
+					if vim.bo.modified then
+						return name .. " [+]"
+					elseif not vim.bo.modifiable or vim.bo.readonly then
+						return name .. " [-]"
+					end
+					return name
+				end,
+			}
 			require("lualine").setup({
 				options = {
 					icons_enabled = true,
@@ -113,7 +136,7 @@ return {
 				sections = {
 					lualine_a = { "mode" },
 					lualine_b = { "branch", "diff", "diagnostics" },
-					lualine_c = { { "filename", file_status = true, path = 1 } },
+					lualine_c = { filename },
 					lualine_x = {
 						{
 							"diagnostics",
@@ -129,7 +152,7 @@ return {
 				inactive_sections = {
 					lualine_a = {},
 					lualine_b = {},
-					lualine_c = { { "filename", file_status = true, path = 1 } },
+					lualine_c = { filename },
 					lualine_x = { "location" },
 					lualine_y = {},
 					lualine_z = {},

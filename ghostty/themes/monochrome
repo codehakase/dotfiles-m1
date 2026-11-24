@@ -1,0 +1,27 @@
+# True-black monochrome with restrained earth-tone syntax in Neovim
+
+background = #000000
+foreground = #d8d8d8
+
+cursor-color = #d8d8d8
+cursor-text = #000000
+
+selection-background = #c8c8c8
+selection-foreground = #000000
+
+palette = 0=#000000
+palette = 1=#909090
+palette = 2=#a0a0a0
+palette = 3=#c6c6c6
+palette = 4=#9a9a9a
+palette = 5=#ababab
+palette = 6=#b8b8b8
+palette = 7=#d8d8d8
+palette = 8=#303030
+palette = 9=#c0c0c0
+palette = 10=#d8d8d8
+palette = 11=#c6c6c6
+palette = 12=#9a9a9a
+palette = 13=#ababab
+palette = 14=#b8b8b8
+palette = 15=#f0f0f0

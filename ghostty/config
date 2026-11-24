@@ -1,8 +1,21 @@
-theme = Gruvbox Dark
-background = 000000
-palette = 0=000000
-mouse-hide-while-typing = true
-macos-titlebar-style = transparent
-cursor-style = block
+# Follows macOS appearance. Dark variants in themes/: gruvbox-hard,
+# gruvbox-dark, monochrome. Edit the dark: entry and reload (cmd+shift+,).
+theme = light:gruvbox-light,dark:gruvbox-hard
+
 font-family = JetBrainsMono Nerd Font
 font-size = 13
+
+window-padding-x = 8
+window-padding-y = 8
+macos-titlebar-style = hidden
+maximize = true
+macos-option-as-alt = true
+
+cursor-style = block
+cursor-style-blink = true
+# Keep the block cursor at the prompt instead of fish's bar
+shell-integration-features = no-cursor
+
+mouse-hide-while-typing = true
+copy-on-select = false
+font-thicken = true
