@@ -1,6 +1,18 @@
 #!/bin/bash
 set -e
 
+# Install Rex keybindings, preserving any different config on this machine.
+rex_source="$(cd "$(dirname "$0")" && pwd)/rex/init.lua"
+rex_config="$HOME/.config/rex/init.lua"
+mkdir -p "$(dirname "$rex_config")"
+if [[ ! "$rex_config" -ef "$rex_source" ]]; then
+  if [[ -e "$rex_config" || -L "$rex_config" ]]; then
+    echo "Keeping existing $rex_config. Merge it with $rex_source to use the dotfiles version." >&2
+  else
+    ln -s "$rex_source" "$rex_config"
+  fi
+fi
+
 # Symlink config dirs into ~/.config
 ln -s $PWD/nvim $HOME/.config/
 ln -s $PWD/fish $HOME/.config/
